@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "portable_utils.h"
 
-typedef struct NeoString{ //talvez eu faça com que ele se tornem CONST posteriormente
+typedef struct NeoString{
     int size;
     char* string;
 }NeoString;
@@ -36,11 +36,15 @@ NeoString createNeoString(int size) { //primeira ideia de como cirar um NeoStrin
 */
 
 void printNeoString(NeoString s){
+    printf("%.*s", s.size, s.string);
+}
 
-    for(int i = 0; i < s.size; i++){
-        printf("%c", s.string[i]);
-    }
+NeoString scanNeoString(){ 
+    NeoString s;
 
+    scanf("%s", &s);
+
+    return s;
 }
 
 
@@ -61,9 +65,12 @@ int main(){
 
 
 
-    NeoString teste = createNeoString("texto\n");
+    NeoString teste1 = createNeoString("texto\n");
 
-    printNeoString(teste);
+    printNeoString(teste1);
+
+    NeoString teste2 = scanNeoString();
+    printNeoString(teste2);
 
     
 
