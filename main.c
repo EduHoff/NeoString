@@ -25,26 +25,24 @@ NeoString createNeoString(const char* txt){
     return s;
 }
 
-
-/*
-NeoString createNeoString(int size) { //primeira ideia de como cirar um NeoString, ainda vou desenvolver mais isso
+NeoString scanNeoString(){ 
     NeoString s;
-    s.size = size;
-    s.string = malloc(size * sizeof(char));
+    s.size = 0;
+    s.string = NULL;
+
+    char c;
+
+    while ((c = getchar()) != '\n' && c != EOF){
+        s.string = realloc(s.string, (s.size + 1) * sizeof(char));
+        s.string[s.size] = c;
+        s.size++;
+    }
+
     return s;
 }
-*/
 
 void printNeoString(NeoString s){
     printf("%.*s", s.size, s.string);
-}
-
-NeoString scanNeoString(){ 
-    NeoString s;
-
-    scanf("%s", &s);
-
-    return s;
 }
 
 
@@ -52,35 +50,13 @@ int main(){
 
     Clear();
 
-    /*
-    NeoString nome = createNeoString(4);
-    nome.string[0] = 's';
-    nome.string[1] = 'i';
-    nome.string[2] = 'm';
-    nome.string[3] = '\n';
-    */
-
-    //printNeoString(nome);
-    //printf("\n");
-
-
-
     NeoString teste1 = createNeoString("texto\n");
-
     printNeoString(teste1);
 
     NeoString teste2 = scanNeoString();
     printNeoString(teste2);
 
     
-
-    /*
-    NeoString teste;
-    teste.size = 2;
-    teste.string = 'a';
-    printf("%c", teste.string);
-    */
-
 
     return 0;
 }
