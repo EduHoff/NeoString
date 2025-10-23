@@ -41,21 +41,46 @@ NeoString scanNeoString(){
     return s;
 }
 
-void printNeoString(NeoString s){
-    printf("%.*s", s.size, s.string);
+NeoString mergeNeoString(NeoString* s1, NeoString* s2){
+    NeoString s3;
+    s3.size = s1->size + s2->size;
+    s3.string = malloc(s3.size * sizeof(char));
+
+    for(int i=0; i<s1->size; i++){
+        s3.string[i] = s1->string[i];
+    }
+
+    for(int i=0; i<s2->size; i++){
+        s3.string[i + s1->size] = s2->string[i];
+    }
+
+    return s3;
+}
+
+void deleteNeoString(NeoString* s){
+    if(s->string != 0){
+        free(s->string);
+        s->string = NULL;
+        s->size = 0;
+    }
+}
+
+void printNeoString(NeoString* s){
+    if(s->string != 0){
+        printf("%.*s", s->size, s->string);
+    }
 }
 
 
 int main(){
-
     Clear();
 
-    NeoString teste1 = createNeoString("texto\n");
-    printNeoString(teste1);
+    NeoString teste1 = createNeoString("Hello, ");
+    NeoString teste2 = createNeoString("world!\n");
 
-    NeoString teste2 = scanNeoString();
-    printNeoString(teste2);
+    NeoString teste3 = mergeNeoString(&teste1, &teste2);
 
+    printNeoString(&teste3);
     
 
     return 0;
