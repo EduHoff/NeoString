@@ -41,7 +41,7 @@ NeoString scanNeoString(){
     return s;
 }
 
-NeoString mergeNeoString(NeoString* s1, NeoString* s2){
+NeoString mergeNeoString(const NeoString* s1, const NeoString* s2){
     NeoString s3;
     s3.size = s1->size + s2->size;
     s3.string = (char*) malloc(s3.size * sizeof(char));
@@ -65,7 +65,7 @@ void deleteNeoString(NeoString* s){
     }
 }
 
-void printNeoString(NeoString* s){
+void printNeoString(const NeoString* s){
     if(s->string != 0){
         printf("%.*s", s->size, s->string);
     }

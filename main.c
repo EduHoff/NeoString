@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include "NeoString.h"
-#include "portable_utils.h"
 
 int main(){
-    Clear();
+    printf("Por favor, digite seu nome:\n");
+    NeoString s1 = scanNeoString();
+    NeoString s2 = createNeoString("Hello, ");
+    NeoString s3 = mergeNeoString(&s2, &s1);
 
-    NeoString teste1 = createNeoString("Hello, ");
-    NeoString teste2 = createNeoString("world!\n");
+    printNeoString(&s3);
 
-    NeoString teste3 = mergeNeoString(&teste1, &teste2);
-
-    printNeoString(&teste3);
+    deleteNeoString(&s1);
+    deleteNeoString(&s2);
+    deleteNeoString(&s3);
     
-
     return 0;
 }
